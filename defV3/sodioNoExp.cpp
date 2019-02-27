@@ -40,7 +40,7 @@ void Analysis(string FName, string Source,string output){
   sourceHisto->Draw();
   
     
-    TF1* spectrum = new TF1("SpectrumFit","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp( (x*[4]-(2*[1]*[1]/([1]+2*[1])))) + 1)+ [5] * exp(-( x-[6] )*( x-[6] )/( 2* [7]* [7])) + [8] / (exp( (x*[9]-(2*[6]*[6]/([6]+2*[6])))) + 1) + [10]*exp(-x*[11]-[12])",13,88);
+    TF1* spectrum = new TF1("SpectrumFit","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp( (x*[4]-(2*[1]*[1]/([1]+2*[1])))) + 1)+ [5] * exp(-( x-[6] )*( x-[6] )/( 2* [7]* [7])) + [8] / (exp( (x*[9]-(2*[6]*[6]/([6]+2*[6])))) + 1)",15,88);
 
   //gauss1+ gauss2+ fd1+ fd2+ bkg1/2
   
@@ -54,11 +54,7 @@ void Analysis(string FName, string Source,string output){
   spectrum->SetParLimits(7,1,5);
   spectrum->SetParLimits(8,37000,60000);
   spectrum->SetParLimits(9,0.6,1.2);
-  spectrum->SetParLimits(10,10e-6,10e-4); 
-  spectrum->SetParLimits(11,10e-3,10e-1);
-  spectrum->SetParLimits(12,-30,-15); 
-  
-  
+    
   sourceHisto->Fit("SpectrumFit","R");
   
   
