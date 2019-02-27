@@ -49,17 +49,17 @@ void Analysis(string FName, string Source){
   /*   TF1* spectrum = new TF1("SpectrumFit","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2]))  +  [3] * exp(-( x-[4] )*( x-[4] )/( 2* [5]* [5]))  +  [6] / (exp((x - [7]) * [8]) + 1)  +  [9] / (exp((x - [10]) * [11]) + 1)  +                    [12] * exp(-(x*[13]-[14]))",21,88);
     */
 
-  TF1* spectrum1 = new TF1("SpectrumFit1","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp( (x-(2*[1]*[1]/(511+2*[1]))) * [4]) + 1)",12,60);
+  TF1* spectrum1 = new TF1("SpectrumFit1","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp( (x*[4]-(2*[1]*[1]/([1]+2*[1])))) + 1)",12,60);
 
   spectrum1->SetParLimits(0,9000,11000);
   spectrum1->SetParLimits(1,36,44);
   spectrum1->SetParLimits(2,0,10);
 
   spectrum1->SetParLimits(3,3000,4000);
-  spectrum1->SetParLimits(4,0.9,1.2);
+  spectrum1->SetParLimits(4,0.7,1.2);
 
   
-  TF1* spectrum2 = new TF1("SpectrumFit2","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp((x - (2*[1]*[1]/(511+2*[1]))) * [4]) + 1)",12,60);
+  TF1* spectrum2 = new TF1("SpectrumFit2","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp((x*[4] - (2*[1]*[1]/([1]+2*[1])))) + 1)",12,60);
 
   spectrum2->SetParLimits(0,9000,11000);
   spectrum2->SetParLimits(1,36,44);
