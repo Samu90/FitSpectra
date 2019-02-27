@@ -52,9 +52,9 @@ void Analysis(string FName, string Source,string output){
   spectrum->SetParLimits(8,37000,60000);
   spectrum->SetParLimits(9,0.6,1.2);
   
- sourceHisto->Fit("SpectrumFit","R");
+  sourceHisto->Fit("SpectrumFit","R");
   
-
+  
   canvSource->SaveAs(("HistoSource"+Source+output+".png").c_str());
   canvSource->SaveAs(("HistoSource"+Source+output+".pdf").c_str());
 
