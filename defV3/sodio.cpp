@@ -9,11 +9,10 @@
 #include "TCanvas.h"
 #include "TStyle.h"
 
-void Analysis(string FName, string Source){
+void Analysis(string FName, string Source,string output){
 
    
   TFile* f_Source = TFile::Open(("../"+FName).c_str());
-  TFile* output = TFile::Open("HistoRes","RECREATE");
 
   TTree* dataSource = (TTree*)f_Source->Get("data");
   
@@ -38,45 +37,26 @@ void Analysis(string FName, string Source){
   
   gStyle->SetOptFit(1000);
   
-    TF1* spectrum = new TF1("SpectrumFit","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2]))  +  [3] * exp(-( x-[4] )*( x-[4] )/( 2* [5]* [5]))  +  [6] / (exp((x - [7]) * [8]) + 1)  +  [9] / (exp((x - [10]) * [11]) + 1)  +                    [12] * exp(-(x*[13]-[14]))",21,88);
+    TF1* spectrum = new TF1("SpectrumFit","[0] * exp(-( x-[1] )*( x-[1] )/( 2* [2]* [2])) + [3] / (exp( (x*[4]-(2*[1]*[1]/([1]+2*[1])))) + 1)+ [5] * exp(-( x-[6] )*( x-[6] )/( 2* [7]* [7])) + [8] / (exp( (x*[9]-(2*[6]*[6]/([6]+2*[6])))) + 1)",13,88);
 
   //gauss1+ gauss2+ fd1+ fd2+ bkg1/2
   
   spectrum->SetParLimits(0,500000,750000);
-  spectrum->SetParLimits(1,36,44);
-  spectrum->SetParLimits(2,2,6);
+  spectrum->SetParLimits(1,37,43);
+  spectrum->SetParLimits(2,1,5);
+  spectrum->SetParLimits(3,200000,750000);
+  spectrum->SetParLimits(4,0.6,1.2);
+  spectrum->SetParLimits(5,30000,70000);
+  spectrum->SetParLimits(6,78,84);
+  spectrum->SetParLimits(7,1,5);
+  spectrum->SetParLimits(8,37000,60000);
+  spectrum->SetParLimits(9,0.6,1.2);
   
-  spectrum->SetParLimits(3,40000,60000);
-  spectrum->SetParLimits(4,78,83);
-  spectrum->SetParLimits(5,2,5);
-
-  spectrum->SetParLimits(6,40000,80000); //altezza FermiDirac
-  spectrum->SetParLimits(7,70,75); //punto inversione
-  spectrum->SetParLimits(8,0.55,1.1); //flesso fermi dirac
-
-  
-  
-  spectrum->SetParLimits(12,5e-05,0.00051);
-  spectrum->SetParLimits(13,0.0001,0.27); 
-  spectrum->SetParLimits(14,0.1,40); //24
-
-
-  spectrum->SetParameter(2,2.78);
- 
-  spectrum->SetParameter(12,0.00025);
-  spectrum->SetParameter(13,0.12374);
-  spectrum->SetParameter(14,24.25);
+ sourceHisto->Fit("SpectrumFit","R");
   
 
-  
-  sourceHisto->Fit("SpectrumFit","R");
-  
-
-
-
-
-  //canvSource->SaveAs(("HistoSource"+Source+".png").c_str());
-  //canvSource->SaveAs(("HistoSource"+Source+".pdf").c_str());
+  canvSource->SaveAs(("HistoSource"+Source+output+".png").c_str());
+  canvSource->SaveAs(("HistoSource"+Source+output+".pdf").c_str());
 
   
   
