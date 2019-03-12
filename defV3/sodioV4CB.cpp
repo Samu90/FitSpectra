@@ -13,7 +13,7 @@ void Analysis(string FName, string Source,string output){
 
    
   TFile* f_Source = TFile::Open(("../"+FName).c_str());
-
+<
   TTree* dataSource = (TTree*)f_Source->Get("data");
   
   Float_t eSource;

@@ -61,8 +61,9 @@ class Source{
   
   Double_t Pedestal;
 
-  string path="/afs/cern.ch/work/s/storelli/private/TOFPET/Sources/def/";
-
+  //string path="/afs/cern.ch/work/s/storelli/private/TOFPET/Sources/def/";
+  string path="/Users/samueletorelli/Desktop/TOFPET/defV4/";
+  
 };
 
 
