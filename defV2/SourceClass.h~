@@ -1,0 +1,42 @@
+#include "iostream"
+#include "string"
+#include "TH1.h"
+#include "TString.h"
+#include "TFile.h"
+#include "TTree.h"
+#include "string"
+#include "TF1.h"
+#include "TCanvas.h"
+#include "TStyle.h"
+
+string path="/afs/cern.ch/work/s/storelli/private/TOFPET/Sources/def/";
+
+class Source{
+
+ public:
+  Source();
+  Source(string FileName);
+  ~Source();
+  
+
+
+
+
+
+
+
+
+ private:
+
+  TFile* DataFile;
+  Double_t Peak1;
+  Double_t Peak2;
+
+}
+
+
+Source::Source(string FileName){
+
+  DataFile=TFile::Open((path+FileName).c_str());
+
+}
