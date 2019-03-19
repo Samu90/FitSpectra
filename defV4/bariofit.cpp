@@ -16,8 +16,8 @@
 
 void mainfun(string outputname){
 
-  //gStyle->SetOptFit(0111);
-  //  gStyle->SetOptStat(0000);
+  gStyle->SetOptFit(0111);
+  gStyle->SetOptStat(0000);
 
   
   Source* Sour = new Source("Ba135",2);
